@@ -41,7 +41,7 @@ class TestParabolicDish(unittest.TestCase):
         x, y, z = p.mesh(5)
         
         N.testing.assert_array_almost_equal(z, p.a*(x**2 + y**2))
-        self.failIf(N.any(x**2 + y**2 > 6.25))
+        self.assertFalse(N.any(x**2 + y**2 > 6.25))
 
 class TestHexDish(unittest.TestCase):
     def runTest(self):

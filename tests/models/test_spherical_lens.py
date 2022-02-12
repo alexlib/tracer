@@ -17,7 +17,7 @@ class Biconvex(unittest.TestCase):
     
     def test_focal_length(self):
         """Biconvex calculated focal length is as expected from the lensmaker equation"""
-        self.failUnlessEqual(self.lens.focal_length(), 2./(0.2 - 0.05/150))
+        self.assertEqual(self.lens.focal_length(), 2./(0.2 - 0.05/150))
     
     def test_paraxial_ray(self):
         """A paraxial ray reaches the focus"""
@@ -30,7 +30,7 @@ class Biconvex(unittest.TestCase):
         e = TracerEngine(Assembly([self.lens, screen]))
         vert, _ = e.ray_tracer(rb, 3, 1e-6)
         
-        self.failUnlessAlmostEqual(vert[1,2], 0, 4)
+        self.assertAlmostEqual(vert[1,2], 0, 4)
     
     def test_cylinder(self):
         """The bounding cylinder exists for biconvex lens"""
@@ -51,7 +51,7 @@ class Biconcave(unittest.TestCase):
     
     def test_focal_length(self):
         """Biconcave calculated focal length is as expected from the lensmaker equation"""
-        self.failUnlessEqual(self.lens.focal_length(), 2./(-0.2 - 0.05/150))
+        self.assertEqual(self.lens.focal_length(), 2./(-0.2 - 0.05/150))
     
     def test_image_size(self):
         """Image size of an object imaged by a biconcave lens matches theory"""
@@ -71,7 +71,7 @@ class Biconcave(unittest.TestCase):
         e = TracerEngine(Assembly([self.lens, screen]))
         vert, _ = e.ray_tracer(rb, 3, 1e-6)
         
-        self.failUnlessAlmostEqual(vert[1,2], -m*origin[1], 4)
+        self.assertAlmostEqual(vert[1,2], -m*origin[1], 4)
     
     def test_cylinder(self):
         """The bounding cylinder exists for biconcave lens"""
@@ -92,7 +92,7 @@ class PlanoConvex(unittest.TestCase):
     
     def test_focal_length(self):
         """PlanoConvex calculated focal length is as expected from the lensmaker equation"""
-        self.failUnlessEqual(self.lens.focal_length(), 20.)
+        self.assertEqual(self.lens.focal_length(), 20.)
     
     def test_paraxial_ray(self):
         """A paraxial ray reaches the focus of a planoconvex lens"""
@@ -105,7 +105,7 @@ class PlanoConvex(unittest.TestCase):
         e = TracerEngine(Assembly([self.lens, screen]))
         vert, _ = e.ray_tracer(rb, 3, 1e-6)
         
-        self.failUnlessAlmostEqual(vert[1,2], 0, 4)
+        self.assertAlmostEqual(vert[1,2], 0, 4)
     
     def test_cylinder(self):
         """The bounding cylinder exists for planoconvex lens"""

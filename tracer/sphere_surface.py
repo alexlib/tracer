@@ -4,7 +4,7 @@
 # [1] http://www.siggraph.org/education/materials/HyperGraph/raytrace/rtinter1.htm
 
 import numpy as N
-from quadric import QuadricGM
+from .quadric import QuadricGM
 
 class SphericalGM(QuadricGM):
     """
@@ -171,7 +171,7 @@ class CutSphereGM(SphericalGM):
             return select
         
         #in_bd = self._bound.in_bounds(coords) & (prm > 0)
-        in_bd = N.array([self._bound.in_bounds(coords[...,c]) for c in xrange(prm.shape[1])]).T
+        in_bd = N.array([self._bound.in_bounds(coords[...,c]) for c in range(prm.shape[1])]).T
         in_bd &= prm > 0
         select[~N.logical_or(*in_bd)] = N.nan
         one_hit = N.logical_xor(*in_bd)

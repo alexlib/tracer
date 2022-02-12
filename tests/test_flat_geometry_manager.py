@@ -18,7 +18,7 @@ class TestFlatGeomManagerInterface(unittest.TestCase):
         
     def test_find_intersections(self):
         """The correct parametric locations are found for flat geometry"""
-        self.failUnlessEqual(self.prm.shape, (4,), 
+        self.assertEqual(self.prm.shape, (4,), 
             "Shape of parametric location array is wrong: " + \
             str(self.prm.shape))
         N.testing.assert_array_almost_equal(self.prm, N.sqrt(3))
@@ -66,7 +66,7 @@ class TestFlatGeomTilted(unittest.TestCase):
         
     def test_find_intersections(self):
         """The correct parametric locations are found for flat geometry"""
-        self.failUnlessEqual(self.prm.shape, (4,), 
+        self.assertEqual(self.prm.shape, (4,), 
             "Shape of parametric location array is wrong: " + \
             str(self.prm.shape))
         N.testing.assert_array_almost_equal(self.prm, math.sqrt(3))
@@ -116,7 +116,7 @@ class TestFlatGeomTranslated(unittest.TestCase):
         
     def test_find_intersections(self):
         """The correct parametric locations are found for translated flat geometry"""
-        self.failUnlessEqual(self.prm.shape, (4,),
+        self.assertEqual(self.prm.shape, (4,),
             "Shape of parametric location array is wrong: " + \
             str(self.prm.shape))
         N.testing.assert_array_almost_equal(self.prm, N.sqrt(3))

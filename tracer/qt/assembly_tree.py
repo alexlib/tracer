@@ -1,5 +1,5 @@
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 
 class AssemblyTreeItem(QtGui.QTreeWidgetItem):
     """
@@ -78,7 +78,7 @@ class AssemblyTree(QtGui.QTreeWidget):
             under.addChild(objects)
             self._add_objects(asm, objects)
         
-        for six in xrange(len(subs)):
+        for six in range(len(subs)):
             caption = self.get_tag(subs[six], 'caption')
             if caption is None:
                 caption = "Assembly %d" % six
@@ -97,7 +97,7 @@ class AssemblyTree(QtGui.QTreeWidget):
         tree.
         """
         objs = asm.get_local_objects()
-        for oix in xrange(len(objs)):
+        for oix in range(len(objs)):
             caption = self.get_tag(objs[oix], 'caption')
             if caption is None:
                 caption = "Object %d" % oix
@@ -111,7 +111,7 @@ class AssemblyTree(QtGui.QTreeWidget):
             
             # Add surfaces:
             surfs = objs[oix].get_surfaces()
-            for six in xrange(len(surfs)):
+            for six in range(len(surfs)):
                 caption = self.get_tag(surfs[six], 'caption')
                 if caption is None:
                     caption = "Surface %d" % six

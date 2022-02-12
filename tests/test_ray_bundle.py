@@ -107,7 +107,7 @@ class TestDistributions(unittest.TestCase):
             center - the center used to construct the bundle.
             R - the radius of the disk containing the vertices.
         """
-        self.assert_((((vertices - center)**2).sum(axis=0) <= R**2).all())
+        self.assertTrue((((vertices - center)**2).sum(axis=0) <= R**2).all())
     
     def assert_uniform(self, sample, lb=0, ub=1, confidence=0.05):
         """Asserts that the given sample is distributed uniformly, with values
@@ -121,7 +121,7 @@ class TestDistributions(unittest.TestCase):
         """
         normed = (sample - lb)/(ub - lb)
         D, p = stats.kstest(normed, 'uniform')
-        self.assert_(p > confidence, "%g too low" % p)
+        self.assertTrue(p > confidence, "%g too low" % p)
         
     def test_location(self):
         dir = N.array([0., 0, 1])
@@ -159,7 +159,7 @@ class TestDistributions(unittest.TestCase):
         rays = solar_disk_bundle(5000, center, dir, R, theta_max)
         directs = rays.get_directions()
         dir_dots = N.dot(dir, directs)
-        self.failUnless((dir_dots >= N.cos(theta_max)).all())
+        self.assertTrue((dir_dots >= N.cos(theta_max)).all())
         
         on_disk_plane = directs - N.outer(dir, dir_dots)
         angs = N.arctan2(on_disk_plane[0], on_disk_plane[1])
@@ -174,7 +174,7 @@ class TestDistributions(unittest.TestCase):
         rays = solar_disk_bundle(5000, center, dir, R, theta_max)
         directs = rays.get_directions()
         dir_dots = N.dot(dir, directs)
-        self.failUnless((dir_dots >= N.cos(theta_max)).all())
+        self.assertTrue((dir_dots >= N.cos(theta_max)).all())
     
     def test_energy(self):
         """When flux is given, the solar disk bundle has proper energy"""

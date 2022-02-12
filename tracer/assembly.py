@@ -5,6 +5,7 @@ import numpy as N
 
 from .spatial_geometry import general_axis_rotation
 from .has_frame import HasFrame
+from functools import reduce
 
 class Assembly(HasFrame):
     """

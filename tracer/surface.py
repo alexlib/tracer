@@ -7,7 +7,7 @@
 # [1] John J. Craig, Introduction to Robotics, 3rd ed., 2005. 
 
 import numpy as N
-from has_frame import HasFrame
+from .has_frame import HasFrame
 
 class Surface(HasFrame):
     """

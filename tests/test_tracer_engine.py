@@ -48,7 +48,7 @@ class TestTraceProtocol1(unittest.TestCase):
         
         params = self.engine.intersect_ray(self._bund, surfaces, objects, \
             surf_ownership, ray_ownership, surfs_relevancy)[0]
-        self.failUnless(params.all())
+        self.assertTrue(params.all())
 
     def test_ray_tracer(self):
         """Ray tracer after one iteration returns what the surface would have"""

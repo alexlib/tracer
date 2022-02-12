@@ -23,7 +23,7 @@ class TestInterface(unittest.TestCase):
     
     def test_find_intersections(self):
         """The correct parametric locations are found for cut sphere geometry"""
-        self.failUnlessEqual(self.prm.shape, (self.num_rays,))
+        self.assertEqual(self.prm.shape, (self.num_rays,))
         N.testing.assert_array_almost_equal(self.prm, 1 + 2*N.sin(N.pi/3))
     
     def test_get_normals(self):

@@ -102,7 +102,7 @@ class TestRefractiveHomogenous(unittest.TestCase):
         gm.select_rays(selector)
         outg = refractive(gm, bund, selector)
         
-        self.failUnlessEqual(outg.get_vertices().shape, (3,1))
+        self.assertEqual(outg.get_vertices().shape, (3,1))
         N.testing.assert_array_equal(outg.get_directions(), 
             N.c_[[0, N.cos(N.pi/180), N.sin(N.pi/180)]])
         N.testing.assert_array_equal(outg.get_energy(), N.r_[100])

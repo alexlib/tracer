@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: Tracer
+Version: 0.2
+Summary: Ray-tracing library in Python, focused on solar energy research
+Home-page: http://tracer.berlios.de
+Author: The Tracer developers
+Author-email: tracer-user@lists.berlios.de
+License: GPL v3.0 or later, see LICENSE file
+Platform: UNKNOWN
+License-File: LICENSE
+
+UNKNOWN
+

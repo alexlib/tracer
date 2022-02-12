@@ -1,0 +1,6 @@
+
+*.bak
+dist/*
+build/*
+tracer/mayavi_ui/__pycache__/__init__.cpython-310.pyc
+*.pyc

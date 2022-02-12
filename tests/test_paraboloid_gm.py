@@ -22,7 +22,7 @@ class TestInterface(unittest.TestCase):
     
     def test_find_intersections(self):
         """The correct parametric locations are found for paraboloid geometry"""
-        self.failUnlessEqual(self.prm.shape, (self.num_rays,))
+        self.assertEqual(self.prm.shape, (self.num_rays,))
         N.testing.assert_array_almost_equal(self.prm, 0.96)
     
     def test_get_normals(self):
@@ -59,7 +59,7 @@ class TestParabolicDishGM(unittest.TestCase):
         prm = gm.find_intersections(N.eye(4), self.bund)
         
         N.testing.assert_array_almost_equal(prm[:3], self.correct)
-        self.failUnless(prm[3] == N.inf)
+        self.assertTrue(prm[3] == N.inf)
     
     def test_hex_aperture(self):
         """Rays intersecting a paraboloid with hex aperture handled correctly"""
@@ -67,5 +67,5 @@ class TestParabolicDishGM(unittest.TestCase):
         prm = gm.find_intersections(N.eye(4), self.bund)
         
         N.testing.assert_array_almost_equal(prm[:3], self.correct)
-        self.failUnless(prm[3] == N.inf)
+        self.assertTrue(prm[3] == N.inf)
 

@@ -18,7 +18,7 @@ class TestSingleReflection(unittest.TestCase):
         correct_reflection = N.array([[0, 1, 1]]).T / math.sqrt(2)
         
         reflection = optics.reflections(dir, normal)
-        self.failUnless((reflection == correct_reflection).all(), 
+        self.assertTrue((reflection == correct_reflection).all(), 
             "Reflection is\n" + str(reflection) + "\nbut should be\n" + str(correct_reflection))
 
 class TestMultipleReflections(unittest.TestCase):
@@ -29,7 +29,7 @@ class TestMultipleReflections(unittest.TestCase):
         correct_reflection = N.array([[1, 1, 1], [-1, 1, 1], [-1, -1, 1], [1, -1, 1]]).T / math.sqrt(3)
         
         reflection = optics.reflections(dir, normal)
-        self.failUnless((reflection == correct_reflection).all(), 
+        self.assertTrue((reflection == correct_reflection).all(), 
             "Reflection is\n" + str(reflection) + "\nbut should be\n" + str(correct_reflection))
         
 class TestTangentRays(unittest.TestCase):
@@ -39,7 +39,7 @@ class TestTangentRays(unittest.TestCase):
         normal = N.array([[0, 0, 1]]).T
         
         reflection = optics.reflections(dir, normal)
-        self.failUnless(N.allclose(reflection, dir), 
+        self.assertTrue(N.allclose(reflection, dir), 
             "Reflection is\n" + str(reflection) + "\nbut should be\n" + str(dir))
 
 class TestMultipleNormals(unittest.TestCase):
@@ -52,7 +52,7 @@ class TestMultipleNormals(unittest.TestCase):
         correct_reflection = N.tile([1, 1, 1], (4,1)).T / math.sqrt(3)
         
         reflection = optics.reflections(dir, normal)
-        self.failUnless(N.allclose(reflection, correct_reflection), 
+        self.assertTrue(N.allclose(reflection, correct_reflection), 
             "Reflection is\n" + str(reflection) + "\nbut should be\n" + str(correct_reflection))
         
 class TestFresnel(unittest.TestCase):
@@ -65,21 +65,21 @@ class TestFresnel(unittest.TestCase):
         dir = N.c_[[0, 0, 1]]
         norm = dir
         R = optics.fresnel(dir, norm, N.r_[1.], N.r_[1.5])
-        self.failUnlessAlmostEqual(R, 0.04) # ref [1], page 44
+        self.assertAlmostEqual(R, 0.04) # ref [1], page 44
     
     def test_grazing_incidence(self):
         """Grazing rays are not refracted"""
         dir = N.c_[[0, 0, 1]]
         norm = N.c_[[0, 1, 0]]
         R = optics.fresnel(dir, norm, N.r_[1.], N.r_[1.5])
-        self.failUnlessAlmostEqual(R, 1.) # ref [1], page 45
+        self.assertAlmostEqual(R, 1.) # ref [1], page 45
     
     def test_no_reflectance(self):
         """With index of refraction = 1, no reflection"""
         dir = N.c_[[0, 1, 1]]/math.sqrt(2)
         norm = N.c_[[0, 1, 0]]
         R = optics.fresnel(dir, norm, N.r_[1.], N.r_[1.])
-        self.failUnlessAlmostEqual(R, 0)
+        self.assertAlmostEqual(R, 0)
 
 class TestRefractionDirs(unittest.TestCase):
     """Direction of refracted rays in various circustances"""
@@ -90,7 +90,7 @@ class TestRefractionDirs(unittest.TestCase):
         norm = N.c_[[0, 1, 0]]
         refr, dirs = optics.refractions(n1, n2, dir, norm)
         
-        self.failUnless(refr.all(), "Some rays did not refract")
+        self.assertTrue(refr.all(), "Some rays did not refract")
         correct_refrs = N.c_[dir[:,0], -N.sqrt([0, 7./9, 2./9])]
         N.testing.assert_array_almost_equal(dirs, correct_refrs)
     
@@ -102,7 +102,7 @@ class TestRefractionDirs(unittest.TestCase):
         norm = N.c_[[0, -1, 0]]
         refr, dirs = optics.refractions(n1, n2, dir, norm)
 
-        self.failUnless(refr.all(), "Some rays did not refract")
+        self.assertTrue(refr.all(), "Some rays did not refract")
         correct_refrs = N.c_[dir[:,0], -N.sqrt([0, 7./9, 2./9])]
         N.testing.assert_array_almost_equal(dirs, correct_refrs)
     
@@ -114,7 +114,7 @@ class TestRefractionDirs(unittest.TestCase):
         norm = N.c_[[0, -1, 0]]
         refr, dirs = optics.refractions(n1, n2, dir, norm)
 
-        self.failUnless(refr.all(), "Some rays did not refract")
+        self.assertTrue(refr.all(), "Some rays did not refract")
         correct_refrs = N.c_[N.sqrt([0, 7./9, 2./9])*N.r_[0,-1,1], -N.sqrt([0, 7./9, 2./9])]
         N.testing.assert_array_almost_equal(dirs, correct_refrs)
     

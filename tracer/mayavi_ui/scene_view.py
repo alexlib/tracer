@@ -55,7 +55,7 @@ class TracerScene(t_api.HasTraits):
         """
         self._scene.mlab.clf()
         self._lines = None
-        for surf_id, mapping in self._meshes.iteritems():
+        for surf_id, mapping in self._meshes.items():
             if mapping[1] is not None:
                 mapping[1].remove()
             self._meshes[surf_id] = (mapping[0], None)
@@ -82,7 +82,7 @@ class TracerScene(t_api.HasTraits):
         surf_ids = [id(s) for s in current_surfs]
         
         # Remove:
-        for sid in self._meshes.keys():
+        for sid in list(self._meshes.keys()):
             if sid not in surf_ids:
                 self._meshes[sid][1].remove()
                 del self._meshes[sid]
@@ -185,7 +185,7 @@ class TracerScene(t_api.HasTraits):
             If None, all surfaces are updated. For adding or removing surfaces,
             use set_assembly().
         """
-        for surf_id, mapping in self._meshes.iteritems():
+        for surf_id, mapping in self._meshes.items():
             if update is not None and surf_id not in update:
                 continue
             surf, mesh = mapping
@@ -234,7 +234,7 @@ def show_rays(scene, tree, escaping_len, ray_selector=None):
     accum_points = [0, tree[0].get_num_rays()]
     connections = []
     
-    for level in xrange(tree.num_bunds()):
+    for level in range(tree.num_bunds()):
         start_rays = tree[level]
         se = start_rays.get_energy()
         

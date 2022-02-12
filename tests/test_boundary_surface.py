@@ -48,20 +48,20 @@ class TestSphereBoundingRect(unittest.TestCase):
         sphere = BoundarySphere(radius=2.)
         
         extents = sphere.bounding_rect_for_plane(self.at_origin_xy)
-        self.failUnlessEqual(extents, (-2., 2., -2., 2.))
+        self.assertEqual(extents, (-2., 2., -2., 2.))
         
         extents = sphere.bounding_rect_for_plane(self.at_origin_yz)
-        self.failUnlessEqual(extents, (-2., 2., -2., 2.))
+        self.assertEqual(extents, (-2., 2., -2., 2.))
         
         extents = sphere.bounding_rect_for_plane(self.at_origin_slant)
-        self.failUnlessEqual(extents, (-2., 2., -2., 2.))
+        self.assertEqual(extents, (-2., 2., -2., 2.))
         
         sqrt_3 = N.sqrt(3)
         extents = sphere.bounding_rect_for_plane(self.parallel_xy)
-        self.failUnlessEqual(extents, (-sqrt_3, sqrt_3, -sqrt_3, sqrt_3))
+        self.assertEqual(extents, (-sqrt_3, sqrt_3, -sqrt_3, sqrt_3))
         
         extents = sphere.bounding_rect_for_plane(self.parallel_yz)
-        self.failUnlessEqual(extents, (-sqrt_3, sqrt_3, -sqrt_3, sqrt_3))
+        self.assertEqual(extents, (-sqrt_3, sqrt_3, -sqrt_3, sqrt_3))
         
         extents = sphere.bounding_rect_for_plane(self.parallel_slanted)
         N.testing.assert_array_almost_equal(extents, \
@@ -72,23 +72,23 @@ class TestSphereBoundingRect(unittest.TestCase):
         sphere = BoundarySphere(radius=2., location=N.r_[1,0,0])
         
         extents = sphere.bounding_rect_for_plane(self.at_origin_xy)
-        self.failUnlessEqual(extents, (-1., 3., -2., 2.))
+        self.assertEqual(extents, (-1., 3., -2., 2.))
 
         sqrt_3 = N.sqrt(3)
         extents = sphere.bounding_rect_for_plane(self.at_origin_yz)
-        self.failUnlessEqual(extents, (-sqrt_3, sqrt_3, -sqrt_3, sqrt_3))
+        self.assertEqual(extents, (-sqrt_3, sqrt_3, -sqrt_3, sqrt_3))
 
         sqrt_h = N.sqrt(0.5)
         sqrt_35 = N.sqrt(3.5)
         extents = sphere.bounding_rect_for_plane(self.at_origin_slant)
-        self.failUnlessEqual(extents, \
+        self.assertEqual(extents, \
             (sqrt_h - sqrt_35, sqrt_h + sqrt_35, -sqrt_35, sqrt_35))
 
         extents = sphere.bounding_rect_for_plane(self.parallel_xy)
-        self.failUnlessEqual(extents, (1 - sqrt_3, 1 + sqrt_3, -sqrt_3, sqrt_3))
+        self.assertEqual(extents, (1 - sqrt_3, 1 + sqrt_3, -sqrt_3, sqrt_3))
 
         extents = sphere.bounding_rect_for_plane(self.parallel_yz)
-        self.failUnlessEqual(extents, (-2., 2., -2., 2.))
+        self.assertEqual(extents, (-2., 2., -2., 2.))
 
         Reff = N.sqrt(4 - (1 - N.sqrt(0.5))**2)
         extents = sphere.bounding_rect_for_plane(self.parallel_slanted)

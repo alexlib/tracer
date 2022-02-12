@@ -72,7 +72,7 @@ class HeliostatField(Assembly):
         hstat_az = N.arctan2(hstat[:,1], hstat[:,0])
         hstat_elev = N.arccos(hstat[:,2])
         
-        for hidx in xrange(self._pos.shape[0]):
+        for hidx in range(self._pos.shape[0]):
             az_rot = rotz(hstat_az[hidx])
             elev_rot = roty(hstat_elev[hidx])
             

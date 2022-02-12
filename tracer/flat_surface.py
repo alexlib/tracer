@@ -6,7 +6,7 @@
 
 from numpy import linalg as LA
 import numpy as N
-from geometry_manager import GeometryManager
+from .geometry_manager import GeometryManager
 
 class FlatGeometryManager(GeometryManager):
     """
@@ -203,7 +203,7 @@ class RectPlateGM(FiniteFlatGM):
         x, y, z - each a 2D array holding in its (i,j) cell the x, y, and z
             coordinate (respectively) of point (i,j) in the mesh.
         """
-        points = N.ceil(resolution*self._half_dims.reshape(-1)*2)
+        points = N.ceil(resolution*self._half_dims.reshape(-1)*2).astype(int)
         points[points < 2] = 2 # At least the edges of the range.
         xs = N.linspace(-self._half_dims[0,0], self._half_dims[0,0], points[0])
         ys = N.linspace(-self._half_dims[1,0], self._half_dims[1,0], points[1])

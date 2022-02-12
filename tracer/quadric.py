@@ -4,7 +4,7 @@
 # [1] http://www.siggraph.org/education/materials/HyperGraph/raytrace/rtinter4.htm
 
 import numpy as N
-from geometry_manager import GeometryManager
+from .geometry_manager import GeometryManager
 
 class QuadricGM(GeometryManager):
     """

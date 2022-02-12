@@ -19,7 +19,7 @@ class TestInterface(unittest.TestCase):
     
     def test_find_intersections(self):
         """The correct parametric locations are found for hemisphere geometry"""
-        self.failUnlessEqual(self.prm.shape, (self.num_rays,))
+        self.assertEqual(self.prm.shape, (self.num_rays,))
         N.testing.assert_array_almost_equal(self.prm, 1 + 2*N.sin(N.pi/3))
     
     def test_get_normals(self):
@@ -40,6 +40,6 @@ class TestInterface(unittest.TestCase):
     def test_mesh(self):
         """The HemisphereGM mesh represents the lower hemisphere only"""
         x, y, z = self.gm.mesh(10)
-        self.failUnless(N.all(z <= 1e-15))
-        self.failIf(N.any(x**2 + y**2 > 4.0001))
+        self.assertTrue(N.all(z <= 1e-15))
+        self.assertFalse(N.any(x**2 + y**2 > 4.0001))
 
